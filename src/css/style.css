@@ -1,0 +1,124 @@
+@font-face {
+    font-family: "TheCat";
+    src: url("../font/TheCat.woff") format("woff");
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Dongle";
+    src: url("../font/Dongle-Regular.woff") format("woff");
+}
+
+* {
+    line-height: 28px;
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 40px;
+    font-family: Dongle;
+}
+
+body {
+    background-color: rgb(209, 223, 233);
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: TheCat, serif;
+}
+h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+}
+h2 {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin: 10px 0;
+}
+h3 {
+    font-size: 1.2rem;
+    letter-spacing: 1.5px;
+}
+
+h4 {
+    font-family: Dongle;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+nav {
+    display: flex;
+    gap: 60px;
+}
+nav button {
+    font-family: Dongle, Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    border: none;
+    background-color: transparent;
+}
+nav button.active::before,
+nav button.active::after {
+    content: "😸";
+}
+nav button:hover {
+    cursor: pointer;
+}
+
+#content {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 24px;
+}
+.card-container .card {
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: white;
+    border-left: 8px solid rgb(31, 124, 195);
+    box-shadow: 3px 3px 5px rgba(208, 208, 208, 0.658);
+}
+.card-container .menu-title {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.card-container .price::before {
+    content: "Php ";
+}
+.card-container .description {
+    padding: 0 10px;
+    margin: 0 14px 20px;
+    text-align: left;
+}
+.card-container .img {
+    width: 100%;
+}
+
+.our-chef {
+    width: 500px;
+    margin: 0 auto;
+}
