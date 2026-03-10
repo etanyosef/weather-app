@@ -1,6 +1,4 @@
-# Webpack Template
-
-Odin Project: Webpack Template
+# The Odin Project: Weather App
 
 ## Installation
 
