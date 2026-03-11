@@ -1,12 +1,13 @@
 import "./css/style.css";
-import { renderHomepage } from "./js/homepage.js";
+import { getWeather } from "./js/homepage.js";
 
-const homeBtn = document.getElementById("home-btn");
+const searchWeatherForm = document.getElementById('search-weather-form');
 
-renderHomepage();
-homeBtn.classList.add("active");
+searchWeatherForm.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-homeBtn.addEventListener("click", () => {
-    homeBtn.classList.add("active");
-    renderHomepage();
+    const location = searchWeatherForm.elements['location-input'].value;
+
+    getWeather(location);
 });
+
