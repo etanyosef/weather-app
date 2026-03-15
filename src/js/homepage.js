@@ -53,15 +53,21 @@ function displayWeather(queryData) {
 
     const weatherContainerDiv = document.createElement('div');
     const addressH2 = document.createElement('h2');
+
+    weatherContainerDiv.classList.add('weather-container');
     
     addressH2.textContent = weatherData.address;
 
+    // current weather
     const currentWeatherDiv = document.createElement('div');
     const currentWeatherOverviewDiv = document.createElement('div');
     const currentWeatherH3 = document.createElement('h3');
     const currentCondition = document.createElement('p');
     const feelsLike = document.createElement('p');
     const currentWeatherDescription = document.createElement('p');
+
+    currentWeatherDiv.classList.add('current-weather-container');
+    currentWeatherOverviewDiv.classList.add('current-weather-overview');
 
     currentWeatherH3.textContent = 'Current Weather';
     currentCondition.textContent = weatherData.currentConditions.conditions;
@@ -84,6 +90,8 @@ function displayWeather(queryData) {
     const currentDewSpan = document.createElement('span');
     const currentDewLabel = document.createElement('span');
     const currentDew = document.createElement('span');
+
+    currentWeatherDetails.classList.add('current-weather-details');
     
     currentWindLabel.textContent = 'Wind';
     currentWind.textContent = `${weatherData.currentConditions.windSpeed}km/h ${weatherData.currentConditions.windDir}°`;
@@ -121,7 +129,64 @@ function displayWeather(queryData) {
     currentDewSpan.append(currentDewLabel);
     currentDewSpan.append(currentDew);
 
+    // daily weather
+    const dailyWeatherDiv = document.createElement('div');
+    const dailyWeatherTabs = document.createElement('div');
+
+    dailyWeatherDiv.classList.add('daily-weather-container');
+    dailyWeatherTabs.classList.add('daily-weather-tabs');
+    
+    weatherData.days.forEach(day => {
+        console.log(day.datetime);
+        const date = new Date(day.datetime);
+        const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const getDay = date.getDay();
+
+        const dailyWeatherTab = document.createElement('div');
+        const dailyWeatherDateDiv = document.createElement('div');
+        const dailyWeatherDate = document.createElement('span');
+        const dailyWeatherDay = document.createElement('span');
+        const dailyWeatherConditionsDiv = document.createElement('div');
+        const dailyWeatherCondition = document.createElement('span');
+        const dailyWeatherTempDiv = document.createElement('div');
+        const dailyWeatherTempMax = document.createElement('span');
+        const dailyWeatherTempMin = document.createElement('span');
+
+        dailyWeatherTab.classList.add('daily-weather-tab');
+        dailyWeatherDateDiv.classList.add('daily-weather-date');
+        dailyWeatherConditionsDiv.classList.add('daily-weather-conditions');
+        dailyWeatherCondition.classList.add('daily-weather-condition');
+        dailyWeatherTempDiv.classList.add('daily-weather-temp');
+
+        dailyWeatherDate.textContent = date.getDate();
+        dailyWeatherDay.textContent = dayNames[getDay];
+
+        dailyWeatherCondition.textContent = day.description;
+
+        dailyWeatherTempMax.textContent = day.tempmax;
+        dailyWeatherTempMin.textContent = day.tempmin;
+
+        dailyWeatherDateDiv.append(dailyWeatherDate);
+        dailyWeatherDateDiv.append(dailyWeatherDay);
+
+        dailyWeatherTempDiv.append(dailyWeatherTempMax);
+        dailyWeatherTempDiv.append(dailyWeatherTempMin);
+
+        dailyWeatherConditionsDiv.append(dailyWeatherCondition);
+        dailyWeatherConditionsDiv.append(dailyWeatherTempDiv);
+
+        dailyWeatherTab.append(dailyWeatherDateDiv);
+        dailyWeatherTab.append(dailyWeatherConditionsDiv);
+
+        dailyWeatherTabs.append(dailyWeatherTab);
+    });
+
+    
     weatherContainerDiv.append(currentWeatherDiv);
+
+    dailyWeatherDiv.append(dailyWeatherTabs);
+
+    weatherContainerDiv.append(dailyWeatherDiv);
 
     content.append(weatherContainerDiv);
 }
