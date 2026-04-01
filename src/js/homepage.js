@@ -136,8 +136,14 @@ function displayWeather(queryData) {
     dailyWeatherDiv.classList.add('daily-weather-container');
     dailyWeatherTabs.classList.add('daily-weather-tabs');
     
-    weatherData.days.forEach(day => {
+    weatherData.days.forEach((day, index) => {
+        // stop looping after 8th day
+        if (index > 7) { 
+            return true;
+        }
         console.log(day.datetime);
+        console.log(index);        
+
         const date = new Date(day.datetime);
         const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         const getDay = date.getDay();
