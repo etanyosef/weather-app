@@ -62,6 +62,7 @@ function displayWeather(queryData) {
     const currentWeatherDiv = document.createElement('div');
     const currentWeatherOverviewDiv = document.createElement('div');
     const currentWeatherH3 = document.createElement('h3');
+    const currentConditionIcon = document.createElement('img');
     const currentCondition = document.createElement('p');
     const feelsLike = document.createElement('p');
     const currentWeatherDescription = document.createElement('p');
@@ -70,6 +71,8 @@ function displayWeather(queryData) {
     currentWeatherOverviewDiv.classList.add('current-weather-overview');
 
     currentWeatherH3.textContent = 'Current Weather';
+    // ADD icon https://pablo.gg/en/blog/coding/how-webpack-handles-dynamic-imports-with-variable-paths/
+    currentConditionIcon.src = '';
     currentCondition.textContent = weatherData.currentConditions.conditions;
     feelsLike.textContent = `Feels like: ${weatherData.currentConditions.feelsLike}℃`;
     currentWeatherDescription.textContent = weatherData.description;
