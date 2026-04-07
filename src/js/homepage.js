@@ -44,7 +44,7 @@ function getWeatherData(queryData) {
     return weatherData;
 }
 
-function displayWeather(queryData) {
+async function displayWeather(queryData) {
     // clear content div
     content.textContent = '';
 
@@ -71,8 +71,12 @@ function displayWeather(queryData) {
     currentWeatherOverviewDiv.classList.add('current-weather-overview');
 
     currentWeatherH3.textContent = 'Current Weather';
-    // ADD icon https://pablo.gg/en/blog/coding/how-webpack-handles-dynamic-imports-with-variable-paths/
-    currentConditionIcon.src = '';
+
+    // add current weather icon using dynamic import
+    const weatherIconModule = await import(`../img/weather-icons/${weatherData.currentConditions.icon}.svg`);
+    const weatherIconSrc = weatherIconModule.default;
+    currentConditionIcon.src = weatherIconSrc;   
+
     currentCondition.textContent = weatherData.currentConditions.conditions;
     feelsLike.textContent = `Feels like: ${weatherData.currentConditions.feelsLike}℃`;
     currentWeatherDescription.textContent = weatherData.description;
@@ -113,6 +117,7 @@ function displayWeather(queryData) {
     currentWeatherDiv.append(currentWeatherDetails);
 
     currentWeatherOverviewDiv.append(currentWeatherH3);
+    currentWeatherOverviewDiv.append(currentConditionIcon)
     currentWeatherOverviewDiv.append(currentCondition);
     currentWeatherOverviewDiv.append(feelsLike);
 
