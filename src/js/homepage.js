@@ -62,6 +62,8 @@ async function displayWeather(queryData) {
     const currentWeatherDiv = document.createElement('div');
     const currentWeatherOverviewDiv = document.createElement('div');
     const currentWeatherH3 = document.createElement('h3');
+    const currentWeatherSpan = document.createElement('span');
+    const currentWeatherSummarySpan = document.createElement('span');
     const currentConditionIcon = document.createElement('img');
     const currentCondition = document.createElement('p');
     const feelsLike = document.createElement('p');
@@ -69,6 +71,9 @@ async function displayWeather(queryData) {
 
     currentWeatherDiv.classList.add('current-weather-container');
     currentWeatherOverviewDiv.classList.add('current-weather-overview');
+    currentWeatherSummarySpan.classList.add('current-weather-summary');
+    currentCondition.classList.add('current-weather-condition');
+    feelsLike.classList.add('current-weather-feelslike');
 
     currentWeatherH3.textContent = 'Current Weather';
 
@@ -117,9 +122,13 @@ async function displayWeather(queryData) {
     currentWeatherDiv.append(currentWeatherDetails);
 
     currentWeatherOverviewDiv.append(currentWeatherH3);
-    currentWeatherOverviewDiv.append(currentConditionIcon)
-    currentWeatherOverviewDiv.append(currentCondition);
-    currentWeatherOverviewDiv.append(feelsLike);
+    currentWeatherOverviewDiv.append(currentWeatherSpan);
+
+    currentWeatherSpan.append(currentConditionIcon);
+    currentWeatherSpan.append(currentWeatherSummarySpan);
+
+    currentWeatherSummarySpan.append(currentCondition);
+    currentWeatherSummarySpan.append(feelsLike);
 
     currentWeatherDetails.append(currentWindSpan);
     currentWeatherDetails.append(currentHumiditySpan);
