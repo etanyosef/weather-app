@@ -153,7 +153,7 @@ async function displayWeather(queryData) {
     dailyWeatherDiv.classList.add('daily-weather-container');
     dailyWeatherTabs.classList.add('daily-weather-tabs');
     
-    weatherData.days.forEach((day, index) => {
+    weatherData.days.forEach(async (day, index) => {
         // stop looping after 8th day
         if (index > 7) { 
             return true;
@@ -169,6 +169,7 @@ async function displayWeather(queryData) {
         const dailyWeatherDateDiv = document.createElement('div');
         const dailyWeatherDate = document.createElement('span');
         const dailyWeatherDay = document.createElement('span');
+        const dailyWeatherIcon = document.createElement('img');
         const dailyWeatherConditionsDiv = document.createElement('div');
         const dailyWeatherCondition = document.createElement('span');
         const dailyWeatherTempDiv = document.createElement('div');
@@ -186,20 +187,25 @@ async function displayWeather(queryData) {
 
         dailyWeatherCondition.textContent = day.description;
 
-        dailyWeatherTempMax.textContent = day.tempmax;
-        dailyWeatherTempMin.textContent = day.tempmin;
+        dailyWeatherTempMax.textContent = `${day.tempmax} ℃`;
+        dailyWeatherTempMin.textContent = `${day.tempmin} ℃`;
 
         dailyWeatherDateDiv.append(dailyWeatherDate);
         dailyWeatherDateDiv.append(dailyWeatherDay);
 
+        const weatherIconModule = await import(`../img/weather-icons/${day.icon}.svg`);
+        const weatherIconSrc = weatherIconModule.default;      
+        dailyWeatherIcon.src = weatherIconSrc;
+
         dailyWeatherTempDiv.append(dailyWeatherTempMax);
         dailyWeatherTempDiv.append(dailyWeatherTempMin);
 
-        dailyWeatherConditionsDiv.append(dailyWeatherCondition);
+        dailyWeatherConditionsDiv.append(dailyWeatherIcon);
         dailyWeatherConditionsDiv.append(dailyWeatherTempDiv);
 
         dailyWeatherTab.append(dailyWeatherDateDiv);
         dailyWeatherTab.append(dailyWeatherConditionsDiv);
+        dailyWeatherTab.append(dailyWeatherCondition);
 
         dailyWeatherTabs.append(dailyWeatherTab);
     });
