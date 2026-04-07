@@ -45,8 +45,6 @@ function getWeatherData(queryData) {
 }
 
 async function displayWeather(queryData) {
-    // clear content div
-    content.textContent = '';
 
     const weatherData = getWeatherData(queryData);
     console.log(weatherData);
