@@ -8,6 +8,24 @@
     gap: 16px;
 }
 
+.current-weather-overview > span {
+    display: flex;
+    gap: 20px
+}
+
+.current-weather-summary .current-weather-condition {
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+.current-weather-summary .current-weather-feelslike {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.current-weather-overview img {
+    width: 120px;
+}
+
 .current-weather-details {
     display: flex;
     gap: 50px;
