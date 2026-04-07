@@ -44,11 +44,16 @@
 
 .daily-weather-tab {
     background-color: rgb(220, 220, 220);
-    min-width: 150px;
+    min-width: 180px;
     padding: 15px 10px;
     display: flex;
     flex-direction: column;
     gap: 8px;
+    border-radius: 10px;
+}
+.daily-weather-tab img {
+    width: 80px;
+    height: 80px;
 }
 
 .daily-weather-date,
@@ -61,5 +66,5 @@
 .daily-weather-temp {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
 }
