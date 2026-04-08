@@ -102,6 +102,11 @@ async function displayWeather(queryData) {
     const currentDew = document.createElement('span');
 
     currentWeatherDetails.classList.add('current-weather-details');
+    currentWindLabel.classList.add('weather-detail-title');
+    currentHumidityLabel.classList.add('weather-detail-title');
+    currentVisibilityLabel.classList.add('weather-detail-title');
+    currentPressureLabel.classList.add('weather-detail-title');
+    currentDewLabel.classList.add('weather-detail-title');
     
     currentWindLabel.textContent = 'Wind';
     currentWind.textContent = `${weatherData.currentConditions.windSpeed}km/h ${weatherData.currentConditions.windDir}°`;
