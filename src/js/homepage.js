@@ -241,11 +241,14 @@ function displayDayWeatherData(day) {
         const hourWeatherDataIcon = document.createElement('img');
         const hourWeatherDataTemp = document.createElement('span');
 
+        // convert date time from 24 to 12 hours
         const time12 = convert24To12Hour(hour.datetime);
         hourWeatherDataTime.textContent = time12;
+
         const weatherIconModule = await import(`../img/weather-icons/${hour.icon}.svg`);
         const weatherIconSrc = weatherIconModule.default;
         hourWeatherDataIcon.src = weatherIconSrc;
+
         hourWeatherDataTemp.textContent = hour.temp;
 
         hourWeatherDataContainer.append(hourWeatherDataTime);
