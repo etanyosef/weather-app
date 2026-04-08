@@ -229,5 +229,64 @@ async function displayWeather(queryData) {
 
 function displayDayWeatherData(day) {
     console.log(day);
-    console.table(day.hours);
+    console.log(day.hours);
+
+    const hourlyWeatherDataContainer = document.createElement('div');
+
+    hourlyWeatherDataContainer.classList.add('hourly-weather-data-container');
+
+    day.hours.forEach(async (hour) => {
+        const hourWeatherDataContainer = document.createElement('div');
+        const hourWeatherDataTime = document.createElement('span');
+        const hourWeatherDataIcon = document.createElement('img');
+        const hourWeatherDataTemp = document.createElement('span');
+
+        const time12 = convert24To12Hour(hour.datetime);
+        hourWeatherDataTime.textContent = time12;
+        const weatherIconModule = await import(`../img/weather-icons/${hour.icon}.svg`);
+        const weatherIconSrc = weatherIconModule.default;
+        hourWeatherDataIcon.src = weatherIconSrc;
+        hourWeatherDataTemp.textContent = hour.temp;
+
+        hourWeatherDataContainer.append(hourWeatherDataTime);
+        hourWeatherDataContainer.append(hourWeatherDataIcon);
+        hourWeatherDataContainer.append(hourWeatherDataTemp);
+
+        hourlyWeatherDataContainer.append(hourWeatherDataContainer);
+    });
+
+    content.append(hourlyWeatherDataContainer);
+}
+
+function convert24To12Hour(time24) {
+    // validate input, accepts: HH:MM or HH:MM:SS (24 hour format)
+    const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)(?::([0-5]\d))?$/;
+    if (!timeRegex.test(time24)) {
+        throw new Error(`Invalid 24-hour time format: ${time24}.`);
+    }
+
+    // split into hours, minutes, seconds(optional)
+    const [hoursStr, minutesStr, secondsStr] = time24.split(':');
+    const hours = parseInt(hoursStr, 10);
+    const minutes = parseInt(minutesStr, 10);
+    const seconds = secondsStr ? parseInt(secondsStr, 10) : null;
+
+    // determine AM/PM
+    const period = hours < 12 ? 'AM' : 'PM';
+
+    // adjust hours to 12-hour format
+    let adjustedHours = hours % 12;
+    adjustedHours = adjustedHours === 0 ? 12 : adjustedHours; // 0 -> 12 (midnight/noon)
+
+    // format mintues (and seconds, if present)
+    const minutesPadded = minutes.toString().padStart(2, '0');
+    let time12 = `${adjustedHours}:${minutesPadded} ${period}`;
+
+    // add seconds if provided
+    // if (seconds !== null) {
+    //     const secondsPadded = seconds.toString().padStart(2, '0');
+    //     time12 = 
+    // }
+
+    return time12;
 }
