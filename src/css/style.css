@@ -1,3 +1,14 @@
+:root {
+    --secondary-bg: #EFE9E3;
+}
+
+body {
+    background-color: #F9F8F6;
+    color: #1b1b1b;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    line-height: 1.4;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -8,6 +19,16 @@
     gap: 16px;
 }
 
+.current-weather-container {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    margin-top: 10px;
+    background-color: var(--secondary-bg);
+    background-filter: blur(20px);
+    padding: 10px 20px 20px 20px;
+    border-radius: 10px;
+}
 .current-weather-overview > span {
     display: flex;
     gap: 20px
@@ -28,12 +49,15 @@
 
 .current-weather-details {
     display: flex;
-    gap: 50px;
+    gap: 60px;
 }
 .current-weather-details > span {
     display: flex;
     flex-direction: column;
     gap: 3px;
+}
+.current-weather-details .weather-detail-title {
+    font-weight: 600;
 }
 
 .daily-weather-tabs {
@@ -43,13 +67,19 @@
 }
 
 .daily-weather-tab {
-    background-color: rgb(220, 220, 220);
-    min-width: 180px;
+    background-color: var(--secondary-bg);
     padding: 15px 10px;
     display: flex;
     flex-direction: column;
+    flex: 1;
+    min-width: 200px;    
     gap: 8px;
     border-radius: 10px;
+}
+.daily-weather-tab:hover {
+    cursor: pointer;
+    filter: contrast(.9);
+    box-shadow: 1px 1px 8px rgba(128, 128, 128, 0.40);
 }
 .daily-weather-tab img {
     width: 80px;
@@ -62,7 +92,10 @@
     justify-content: space-between;
     gap: 10px;
 }
-
+.daily-weather-date {
+    font-weight: 500;
+    font-size: 1.1rem;
+}
 .daily-weather-temp {
     display: flex;
     flex-direction: column;
