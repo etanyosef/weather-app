@@ -102,6 +102,23 @@ body {
     justify-content: space-around;
 }
 
+.hourly-weather-data-container {
+    display: flex;
+    gap: 5px;
+    overflow-x: scroll;
+}
+.hourly-weather-data-container > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 3px 6px;
+}
+.hourly-weather-data-container > div img {
+    width: 40px;
+    height: 40px;
+}
+
 /* HTML: <div class="loader"></div> */
 .loader {
   width: 108px;
