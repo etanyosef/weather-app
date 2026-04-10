@@ -7,3 +7,6 @@ export const pointerScroll = (elem) => {
     elem.addEventListener('pointerup', dragEnd);
     elem.addEventListener('pointermove', drag);
 }
+
+// TODO: replace drag with carousel: https://codepen.io/tutsplus/pen/MWZwrGJ
+const carousel = document.querySelector('.carousel-container');
