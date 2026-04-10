@@ -1,5 +1,6 @@
 import "./css/style.css";
 import { getWeather } from "./js/homepage.js";
+import { pointerScroll } from "./js/drag-scroll.js";
 
 const content = document.getElementById('content');
 const loader = document.querySelector('.loader');
@@ -17,5 +18,9 @@ searchWeatherForm.addEventListener('submit', async (e) => {
     loader.style.display = 'block';
     await getWeather(location);
     loader.style.display = 'none';
+
+    document.querySelectorAll('.draggable').forEach(pointerScroll);
 });
+
+
 

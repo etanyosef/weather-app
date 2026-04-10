@@ -1,3 +1,5 @@
+import { pointerScroll } from "./drag-scroll";
+
 const APIKey = 'SB5H8XPWXTETBEG5F5FAZCP9M';
 
 const content = document.getElementById('content');
@@ -155,6 +157,7 @@ async function displayWeather(queryData) {
 
     dailyWeatherDiv.classList.add('daily-weather-container');
     dailyWeatherTabs.classList.add('daily-weather-tabs');
+    dailyWeatherTabs.classList.add('draggable');
     
     weatherData.days.forEach(async (day, index) => {
         // stop looping after 8th day
@@ -225,6 +228,8 @@ async function displayWeather(queryData) {
     weatherContainerDiv.append(dailyWeatherDiv);
 
     content.append(weatherContainerDiv);
+
+    // document.querySelectorAll('.draggable').forEach(pointerScroll);
 }
 
 function displayDayWeatherData(day) {
@@ -234,6 +239,7 @@ function displayDayWeatherData(day) {
     const hourlyWeatherDataContainer = document.createElement('div');
 
     hourlyWeatherDataContainer.classList.add('hourly-weather-data-container');
+    hourlyWeatherDataContainer.classList.add('draggable');
 
     day.hours.forEach(async (hour) => {
         const hourWeatherDataContainer = document.createElement('div');
@@ -259,6 +265,7 @@ function displayDayWeatherData(day) {
     });
 
     content.append(hourlyWeatherDataContainer);
+    document.querySelectorAll('.draggable').forEach(pointerScroll);
 }
 
 function convert24To12Hour(time24) {
