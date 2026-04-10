@@ -1,5 +1,5 @@
 :root {
-    --secondary-bg: #EFE9E3;
+    --secondary-bg: #ffffff51;
 }
 
 body {
@@ -7,6 +7,10 @@ body {
     color: #1b1b1b;
     font-family: Roboto, Arial, Helvetica, sans-serif;
     line-height: 1.4;
+    background: url('../img/bg2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 * {
@@ -25,7 +29,7 @@ body {
     width: auto;
     margin-top: 10px;
     background-color: var(--secondary-bg);
-    background-filter: blur(20px);
+    backdrop-filter: blur(10px);
     padding: 10px 20px 20px 20px;
     border-radius: 10px;
 }
@@ -63,11 +67,12 @@ body {
 .daily-weather-tabs {
     display: flex;
     gap: 14px;
-    overflow-x: scroll;
+    overflow: hidden;
 }
 
 .daily-weather-tab {
     background-color: var(--secondary-bg);
+    backdrop-filter: blur(10px);
     padding: 15px 10px;
     display: flex;
     flex-direction: column;
@@ -103,20 +108,31 @@ body {
 }
 
 .hourly-weather-data-container {
+    background-color: var(--secondary-bg);
     display: flex;
     gap: 5px;
-    overflow-x: scroll;
+    overflow: hidden;
+    font-size: 0.8rem;
+    border-radius: 10px;
+    margin-top: 10px;
 }
 .hourly-weather-data-container > div {
     display: flex;
     flex-direction: column;
+    flex: 1;
     align-items: center;
-
+    min-width: 70px;
     padding: 3px 6px;
 }
 .hourly-weather-data-container > div img {
     width: 40px;
     height: 40px;
+}
+
+.draggable {
+    /* prevent text highlighting */
+    touch-action: none;
+    user-select: none;
 }
 
 /* HTML: <div class="loader"></div> */
