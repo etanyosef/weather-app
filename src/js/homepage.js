@@ -155,9 +155,25 @@ async function displayWeather(queryData) {
     const dailyWeatherDiv = document.createElement('div');
     const dailyWeatherTabs = document.createElement('div');
 
+    // add carousel arrows
+    const carouselArrowBack = document.createElement('button');
+    const carouselArrowNext = document.createElement('button');
+
+    carouselArrowBack.textContent = `&#8249`;
+    carouselArrowNext.textContent = `&#8250`;
+
+    carouselArrowBack.classList.add('carousel-arrow');
+    carouselArrowBack.classList.add('carousel-arrow-back');
+    carouselArrowNext.classList.add('carousel-arrow');
+    carouselArrowNext.classList.add('carousel-arrow-next');
+
+    dailyWeatherDiv.append(carouselArrowBack);
+    dailyWeatherDiv.append(carouselArrowNext);
+
     dailyWeatherDiv.classList.add('daily-weather-container');
     dailyWeatherTabs.classList.add('daily-weather-tabs');
     dailyWeatherTabs.classList.add('draggable');
+
     
     weatherData.days.forEach(async (day, index) => {
         // stop looping after 8th day
