@@ -9,10 +9,10 @@ export const pointerScroll = (elem) => {
 }
 
 // TODO: replace drag with carousel: https://codepen.io/tutsplus/pen/MWZwrGJ
-const carousel = document.querySelector('.carousel-container');
-const slide = document.querySelector('.carousel-sldie');
-
-function handleCarouselMove(positive = true) {
+export function handleCarouselMove(positive = true) {
+    const carousel = document.querySelector('.carousel-container');
+    const slide = document.querySelector('.carousel-slide');
+    console.log(slide);
     const slideWidth = slide.clientWidth;
     carousel.scrollLeft = positive ? carousel.scrollLeft + slideWidth : carousel.scrollLeft - slideWidth;
 }
