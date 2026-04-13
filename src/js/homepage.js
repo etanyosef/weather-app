@@ -162,7 +162,7 @@ async function displayWeather(queryData) {
     
     weatherData.days.forEach(async (day, index) => {
         // stop looping after 8th day
-        if (index < 1 || index > 7) { 
+        if (index < 0 || index > 7) { 
             return true;
         }
         console.log(day.datetime);
@@ -217,6 +217,8 @@ async function displayWeather(queryData) {
 
         dailyWeatherTabs.append(dailyWeatherTab);
 
+        displayDayWeatherData(weatherData.days[0]);
+
         dailyWeatherTab.addEventListener('click', () => {
             // console.log(weatherData.days[index]);
             displayDayWeatherData(weatherData.days[index]);
@@ -255,6 +257,9 @@ async function displayWeather(queryData) {
 function displayDayWeatherData(day) {
     console.log(day);
     console.log(day.hours);
+
+    const hWDC = document.querySelector('.hourly-weather-data-container');
+    hWDC ? hWDC.remove() : null;
 
     const hourlyWeatherDataContainer = document.createElement('div');
 
