@@ -1,4 +1,4 @@
-import { pointerScroll } from "./drag-scroll";
+import { pointerScroll, handleCarouselMove } from "./drag-scroll";
 
 const APIKey = 'SB5H8XPWXTETBEG5F5FAZCP9M';
 
@@ -155,24 +155,9 @@ async function displayWeather(queryData) {
     const dailyWeatherDiv = document.createElement('div');
     const dailyWeatherTabs = document.createElement('div');
 
-    // add carousel arrows
-    const carouselArrowBack = document.createElement('button');
-    const carouselArrowNext = document.createElement('button');
-
-    carouselArrowBack.textContent = `&#8249`;
-    carouselArrowNext.textContent = `&#8250`;
-
-    carouselArrowBack.classList.add('carousel-arrow');
-    carouselArrowBack.classList.add('carousel-arrow-back');
-    carouselArrowNext.classList.add('carousel-arrow');
-    carouselArrowNext.classList.add('carousel-arrow-next');
-
-    dailyWeatherDiv.append(carouselArrowBack);
-    dailyWeatherDiv.append(carouselArrowNext);
-
     dailyWeatherDiv.classList.add('daily-weather-container');
     dailyWeatherTabs.classList.add('daily-weather-tabs');
-    dailyWeatherTabs.classList.add('draggable');
+    dailyWeatherTabs.classList.add('carousel-container');
 
     
     weatherData.days.forEach(async (day, index) => {
@@ -199,6 +184,7 @@ async function displayWeather(queryData) {
         const dailyWeatherTempMin = document.createElement('span');
 
         dailyWeatherTab.classList.add('daily-weather-tab');
+        dailyWeatherTab.classList.add('carousel-slide');
         dailyWeatherDateDiv.classList.add('daily-weather-date');
         dailyWeatherConditionsDiv.classList.add('daily-weather-conditions');
         dailyWeatherCondition.classList.add('daily-weather-condition');
@@ -245,6 +231,24 @@ async function displayWeather(queryData) {
 
     content.append(weatherContainerDiv);
 
+    // add carousel arrows
+    const carouselArrowBack = document.createElement('button');
+    const carouselArrowNext = document.createElement('button');
+
+    carouselArrowBack.textContent = '\u2BC7';
+    carouselArrowNext.textContent = '\u2BC8';
+
+    carouselArrowBack.classList.add('carousel-arrow');
+    carouselArrowBack.classList.add('carousel-arrow-back');
+    carouselArrowNext.classList.add('carousel-arrow');
+    carouselArrowNext.classList.add('carousel-arrow-next');
+
+    carouselArrowBack.addEventListener('click', () => handleCarouselMove(false));
+    carouselArrowNext.addEventListener('click', () =>  handleCarouselMove());
+
+    dailyWeatherDiv.append(carouselArrowBack);
+    dailyWeatherDiv.append(carouselArrowNext);
+
     // document.querySelectorAll('.draggable').forEach(pointerScroll);
 }
 
@@ -270,6 +274,7 @@ function displayDayWeatherData(day) {
         const weatherIconModule = await import(`../img/weather-icons/${hour.icon}.svg`);
         const weatherIconSrc = weatherIconModule.default;
         hourWeatherDataIcon.src = weatherIconSrc;
+        hourWeatherDataIcon.draggable = false;
 
         hourWeatherDataTemp.textContent = hour.temp;
 
