@@ -82,7 +82,6 @@ body {
     padding: 15px 10px;
     display: flex;
     flex-direction: column;
-    flex: 1;
     min-width: 200px;    
     gap: 8px;
     border-radius: 10px;
@@ -151,7 +150,6 @@ body {
   overflow-x: auto; */
     margin: 0 26px;
     width: 100%;
-    align-items: center;
     scroll-snap-type: x mandatory;
     flex-flow: row nowrap;
     scroll-behavior: smooth;
