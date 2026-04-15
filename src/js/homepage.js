@@ -304,7 +304,15 @@ function displayDayWeatherData(day) {
         hourWeatherDataIcon.src = weatherIconSrc;
         hourWeatherDataIcon.draggable = false;
 
+        // get active temp button and display active temp
+        const activeTemp = document.querySelector('.temp-toggle-container button.active').textContent;
+        if(activeTemp === '°C') {
         hourWeatherDataTemp.textContent = hour.temp;
+            hourWeatherDataTemp.classList.add('temp', 'celcius');
+        } else {
+            hourWeatherDataTemp.textContent = convertToFahrenheit(hour.temp);
+            hourWeatherDataTemp.classList.add('temp', 'fahrenheit');
+        }        
 
         hourWeatherDataContainer.append(hourWeatherDataTime);
         hourWeatherDataContainer.append(hourWeatherDataIcon);
