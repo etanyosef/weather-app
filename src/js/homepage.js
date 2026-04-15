@@ -1,4 +1,5 @@
 import { pointerScroll, handleCarouselMove } from "./drag-scroll";
+import { displayCelcius, displayFahrenheit } from "./temp-converter";
 
 const APIKey = 'SB5H8XPWXTETBEG5F5FAZCP9M';
 
@@ -217,7 +218,7 @@ async function displayWeather(queryData) {
 
         dailyWeatherCondition.textContent = day.description;
 
-        dailyWeatherTempMax.textContent = `${day.tempmax} ℃`;
+        dailyWeatherTempMax.textContent = `${day.tempmax}`;
         dailyWeatherTempMin.textContent = `${day.tempmin} ℃`;
 
         dailyWeatherDateDiv.append(dailyWeatherDate);
