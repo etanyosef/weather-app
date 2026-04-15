@@ -1,5 +1,10 @@
 import { pointerScroll, handleCarouselMove } from "./drag-scroll";
-import { displayCelcius, displayFahrenheit } from "./temp-converter";
+import { 
+    convertToFahrenheit, 
+    displayActiveTemp, 
+    displayCelcius, 
+    displayFahrenheit 
+} from "./temp-converter";
 
 const APIKey = 'SB5H8XPWXTETBEG5F5FAZCP9M';
 
@@ -67,6 +72,8 @@ async function displayWeather(queryData) {
     const tempCelciusButton = document.createElement('button');
 
     tempConverterContainer.classList.add('.temp-converter-container');
+    tempFahrenheitButton.classList.add('fahrenheit-button');
+    tempCelciusButton.classList.add('celcius-button');
 
     tempFahrenheitButton.textContent = '°F';
     tempCelciusButton.textContent = '°C';
@@ -86,6 +93,7 @@ async function displayWeather(queryData) {
     const currentConditionIcon = document.createElement('img');
     const currentCondition = document.createElement('p');
     const feelsLike = document.createElement('p');
+    const feelsLikeTemp = document.createElement('span');
     const currentWeatherDescription = document.createElement('p');
 
     currentWeatherDiv.classList.add('current-weather-container');
@@ -93,6 +101,7 @@ async function displayWeather(queryData) {
     currentWeatherSummarySpan.classList.add('current-weather-summary');
     currentCondition.classList.add('current-weather-condition');
     feelsLike.classList.add('current-weather-feelslike');
+    feelsLikeTemp.classList.add('temp', 'celcius');
 
     currentWeatherH3.textContent = 'Current Weather';
 
@@ -102,7 +111,8 @@ async function displayWeather(queryData) {
     currentConditionIcon.src = weatherIconSrc;   
 
     currentCondition.textContent = weatherData.currentConditions.conditions;
-    feelsLike.textContent = `Feels like: ${weatherData.currentConditions.feelsLike}℃`;
+    feelsLike.textContent = `Feels like: `;
+    feelsLikeTemp.textContent = weatherData.currentConditions.feelsLike;
     currentWeatherDescription.textContent = weatherData.description;
 
     const currentWeatherDetails = document.createElement('div');
@@ -157,6 +167,8 @@ async function displayWeather(queryData) {
     currentWeatherSummarySpan.append(currentCondition);
     currentWeatherSummarySpan.append(feelsLike);
 
+    feelsLike.append(feelsLikeTemp);
+
     currentWeatherDetails.append(currentWindSpan);
     currentWeatherDetails.append(currentHumiditySpan);
     currentWeatherDetails.append(currentVisibilitySpan);
@@ -205,21 +217,21 @@ async function displayWeather(queryData) {
         const dailyWeatherTempMax = document.createElement('span');
         const dailyWeatherTempMin = document.createElement('span');
 
-        dailyWeatherTab.classList.add('daily-weather-tab');
-        dailyWeatherTab.classList.add('carousel-slide');
+        dailyWeatherTab.classList.add('daily-weather-tab', 'carousel-slide');
         dailyWeatherDateDiv.classList.add('daily-weather-date');
         dailyWeatherConditionsDiv.classList.add('daily-weather-conditions');
         dailyWeatherCondition.classList.add('daily-weather-condition');
         dailyWeatherTempDiv.classList.add('daily-weather-temp');
         dailyWeatherTempMax.classList.add('temp', 'celcius');
+        dailyWeatherTempMin.classList.add('temp', 'celcius');
 
         dailyWeatherDate.textContent = date.getDate();
         dailyWeatherDay.textContent = dayNames[getDay];
 
         dailyWeatherCondition.textContent = day.description;
 
-        dailyWeatherTempMax.textContent = `${day.tempmax}`;
-        dailyWeatherTempMin.textContent = `${day.tempmin} ℃`;
+        dailyWeatherTempMax.textContent = day.tempmax;
+        dailyWeatherTempMin.textContent = day.tempmin;
 
         dailyWeatherDateDiv.append(dailyWeatherDate);
         dailyWeatherDateDiv.append(dailyWeatherDay);
@@ -246,6 +258,8 @@ async function displayWeather(queryData) {
             // console.log(weatherData.days[index]);
             displayDayWeatherData(weatherData.days[index]);
         });
+
+        displayActiveTemp();
     }); 
     
     weatherContainerDiv.append(currentWeatherDiv);
@@ -275,6 +289,8 @@ async function displayWeather(queryData) {
     dailyWeatherDiv.append(carouselArrowNext);
 
     // document.querySelectorAll('.draggable').forEach(pointerScroll);
+
+    displayActiveTemp();
 }
 
 function displayDayWeatherData(day) {
@@ -307,7 +323,7 @@ function displayDayWeatherData(day) {
         // get active temp button and display active temp
         const activeTemp = document.querySelector('.temp-toggle-container button.active').textContent;
         if(activeTemp === '°C') {
-        hourWeatherDataTemp.textContent = hour.temp;
+            hourWeatherDataTemp.textContent = hour.temp;
             hourWeatherDataTemp.classList.add('temp', 'celcius');
         } else {
             hourWeatherDataTemp.textContent = convertToFahrenheit(hour.temp);
