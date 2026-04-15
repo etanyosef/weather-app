@@ -17,6 +17,13 @@ body {
     box-sizing: border-box;
 }
 
+.temp.celcius::after {
+    content: ' °C';
+}
+.temp.fahrenheit::after {
+    content: ' °F';
+}
+
 .weather-container {
     display: flex;
     flex-direction: column;
