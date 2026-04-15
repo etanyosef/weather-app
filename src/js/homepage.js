@@ -210,6 +210,7 @@ async function displayWeather(queryData) {
         dailyWeatherConditionsDiv.classList.add('daily-weather-conditions');
         dailyWeatherCondition.classList.add('daily-weather-condition');
         dailyWeatherTempDiv.classList.add('daily-weather-temp');
+        dailyWeatherTempMax.classList.add('temp', 'celcius');
 
         dailyWeatherDate.textContent = date.getDate();
         dailyWeatherDay.textContent = dayNames[getDay];
