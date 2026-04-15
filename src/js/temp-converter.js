@@ -24,8 +24,6 @@ export function displayCelcius() {
         temp.classList.remove('fahrenheit');
         temp.classList.add('celcius');
     });
-
-    console.log(temps);
 }
 
 export function displayFahrenheit() {
@@ -40,6 +38,13 @@ export function displayFahrenheit() {
         temp.classList.remove('celcius');
         temp.classList.add('fahrenheit');
     });
+}
 
-    console.log(temps);
+export function displayActiveTemp() {
+    const activeTemp = document.querySelector('.temp-toggle-container button.active').textContent;
+    if(activeTemp === '°C') {
+        displayCelcius();
+    } else {
+        displayFahrenheit();
+    }
 }
