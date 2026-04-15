@@ -17,6 +17,10 @@ body {
     box-sizing: border-box;
 }
 
+header {
+    margin-bottom: 20px;
+}
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -26,6 +30,8 @@ nav {
 nav .temp-toggle-container {
     display: flex;
     gap: 0;
+    border-radius: 5px;
+    overflow: hidden;
 }
 .temp-toggle-container button {
     border: none;
@@ -36,11 +42,11 @@ nav .temp-toggle-container {
     cursor: pointer;
 }
 .temp-toggle-container button.active {
-    background-color: rgb(60, 200, 255);
+    background-color: mediumspringgreen;
     color: rgb(60, 60, 60);
 }
 .temp-toggle-container button:hover {
-    background-color: skyblue;
+    background-color: rgba(0, 250, 154, 0.7);
 }
 
 .temp.celcius::after {
@@ -121,7 +127,7 @@ nav .temp-toggle-container {
     padding: 15px 10px;
     display: flex;
     flex-direction: column;
-    min-width: 200px;    
+    min-width: 240px;
     gap: 8px;
     border-radius: 10px;
 }
