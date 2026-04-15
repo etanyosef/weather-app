@@ -52,11 +52,29 @@ async function displayWeather(queryData) {
     console.log(weatherData);
 
     const weatherContainerDiv = document.createElement('div');
+    const weatherHeaderContainer = document.createElement('div');
     const addressH2 = document.createElement('h2');
 
     weatherContainerDiv.classList.add('weather-container');
+    weatherHeaderContainer.classList.add('weather-header-container');
     
     addressH2.textContent = weatherData.address;
+
+    // temp converter buttons
+    const tempConverterContainer = document.createElement('div');
+    const tempFahrenheitButton = document.createElement('button');
+    const tempCelciusButton = document.createElement('button');
+
+    tempConverterContainer.classList.add('.temp-converter-container');
+
+    tempFahrenheitButton.textContent = '°F';
+    tempCelciusButton.textContent = '°C';
+
+    tempConverterContainer.append(tempFahrenheitButton);
+    tempConverterContainer.append(tempCelciusButton);
+
+    tempFahrenheitButton.addEventListener('click', displayFahrenheit);
+    tempCelciusButton.addEventListener('click', displayCelcius);
 
     // current weather
     const currentWeatherDiv = document.createElement('div');
@@ -121,10 +139,13 @@ async function displayWeather(queryData) {
     currentDewLabel.textContent = 'Dew Point';
     currentDew.textContent = weatherData.currentConditions.dew;
 
-    currentWeatherDiv.append(addressH2);
+    currentWeatherDiv.append(weatherHeaderContainer);
     currentWeatherDiv.append(currentWeatherOverviewDiv);
     currentWeatherDiv.append(currentWeatherDescription);
     currentWeatherDiv.append(currentWeatherDetails);
+
+    weatherHeaderContainer.append(addressH2);
+    weatherHeaderContainer.append(tempConverterContainer);
 
     currentWeatherOverviewDiv.append(currentWeatherH3);
     currentWeatherOverviewDiv.append(currentWeatherSpan);
