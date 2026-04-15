@@ -17,6 +17,32 @@ body {
     box-sizing: border-box;
 }
 
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .temp-toggle-container {
+    display: flex;
+    gap: 0;
+}
+.temp-toggle-container button {
+    border: none;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    background-color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+}
+.temp-toggle-container button.active {
+    background-color: rgb(60, 200, 255);
+    color: rgb(60, 60, 60);
+}
+.temp-toggle-container button:hover {
+    background-color: skyblue;
+}
+
 .temp.celcius::after {
     content: ' °C';
 }
