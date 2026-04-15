@@ -66,24 +66,6 @@ async function displayWeather(queryData) {
     
     addressH2.textContent = weatherData.address;
 
-    // temp converter buttons
-    const tempConverterContainer = document.createElement('div');
-    const tempFahrenheitButton = document.createElement('button');
-    const tempCelciusButton = document.createElement('button');
-
-    tempConverterContainer.classList.add('.temp-converter-container');
-    tempFahrenheitButton.classList.add('fahrenheit-button');
-    tempCelciusButton.classList.add('celcius-button');
-
-    tempFahrenheitButton.textContent = '°F';
-    tempCelciusButton.textContent = '°C';
-
-    tempConverterContainer.append(tempFahrenheitButton);
-    tempConverterContainer.append(tempCelciusButton);
-
-    tempFahrenheitButton.addEventListener('click', displayFahrenheit);
-    tempCelciusButton.addEventListener('click', displayCelcius);
-
     // current weather
     const currentWeatherDiv = document.createElement('div');
     const currentWeatherOverviewDiv = document.createElement('div');
@@ -156,7 +138,6 @@ async function displayWeather(queryData) {
     currentWeatherDiv.append(currentWeatherDetails);
 
     weatherHeaderContainer.append(addressH2);
-    weatherHeaderContainer.append(tempConverterContainer);
 
     currentWeatherOverviewDiv.append(currentWeatherH3);
     currentWeatherOverviewDiv.append(currentWeatherSpan);
