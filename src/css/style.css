@@ -30,6 +30,12 @@ body {
     gap: 16px;
 }
 
+.weather-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .current-weather-container {
     display: flex;
     flex-direction: column;
