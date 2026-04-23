@@ -61,9 +61,9 @@ nav .search-weather-form button:hover {
 nav .temp-toggle-container {
     display: flex;
     gap: 10px;
-    border-radius: 30px;
+    border-radius: 50px;
     overflow: hidden;
-    padding: 10px;
+    padding: 10px 16px;
     background-color: rgba(255, 255, 255, 0.6);    
     box-shadow: 3px 3px 5px rgba(70, 70, 70, 0.64);
 }
@@ -204,6 +204,7 @@ main {
     font-size: 0.8rem;
     border-radius: 10px;
     margin-top: 10px;
+    padding: 4px 8px;
 }
 .hourly-weather-data-container > div {
     display: flex;
