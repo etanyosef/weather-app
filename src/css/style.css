@@ -21,32 +21,67 @@ header {
     margin-bottom: 20px;
 }
 
+h1 {
+    color: white;
+}
+
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+nav .search-weather-form {
+    display: flex;
+    gap: 14px;
+}
+
+nav .search-weather-form input {
+    padding: 12px 16px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    box-shadow: 3px 3px 5px rgba(70, 70, 70, 0.64);
+}
+
+nav .search-weather-form button {
+    padding: 12px 16px;
+    font-size: 1.2rem;
+    border-radius: 12px;
+    background-color: #4681f4;
+    border: none;
+    color: white;
+    cursor: pointer;
+    box-shadow: 3px 3px 5px rgba(70, 70, 70, 0.64);
+}
+nav .search-weather-form button:hover {
+    filter: saturate(2);
+}
+
 nav .temp-toggle-container {
     display: flex;
-    gap: 0;
-    border-radius: 5px;
+    gap: 10px;
+    border-radius: 30px;
     overflow: hidden;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.6);    
+    box-shadow: 3px 3px 5px rgba(70, 70, 70, 0.64);
 }
 .temp-toggle-container button {
     border: none;
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 600;
-    padding: 8px 16px;
-    background-color: rgba(255, 255, 255, 0.6);
+    padding: 14px;
+    border-radius: 50%;
     cursor: pointer;
 }
 .temp-toggle-container button.active {
-    background-color: mediumspringgreen;
-    color: rgb(60, 60, 60);
+    background-color: rgb(0, 183, 255);
+    color: rgb(255, 255, 255);
 }
 .temp-toggle-container button:hover {
-    background-color: rgba(0, 250, 154, 0.7);
+    background-color: rgb(0, 183, 255);
+    color: white;
 }
 
 .temp.celcius::after {
@@ -54,6 +89,10 @@ nav .temp-toggle-container {
 }
 .temp.fahrenheit::after {
     content: ' °F';
+}
+
+main {
+    color: rgb(227, 227, 227);
 }
 
 .weather-container {
@@ -205,7 +244,7 @@ nav .temp-toggle-container {
     display: flex;
     justify-content: center;
     top: 0;
-    bottom: -180px;
+    bottom: -30%;
     margin-block: auto;
     height: fit-content;
     width: 34px;
