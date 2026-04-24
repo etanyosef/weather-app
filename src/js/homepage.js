@@ -181,7 +181,7 @@ async function displayWeather(queryData) {
             return true;
         }
         console.log(day.datetime);
-        console.log(index);        
+        console.log(index);
 
         const date = new Date(day.datetime);
         // get current day
